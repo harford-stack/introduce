@@ -335,10 +335,10 @@
     let obj = document.querySelector("#img1");
     let txt = document.querySelector("#disguiseText");
     if (obj.src.includes("noDisguise.jpg")) {
-        obj.src = "../media/McGraw_disguise.jpg";
+        obj.src = "McGraw_disguise.jpg";
         txt.innerHTML = "변장 후 (치킨 아님 주의)";
     } else {
-        obj.src = "../media/McGraw_noDisguise.jpg";
+        obj.src = "McGraw_noDisguise.jpg";
         txt.innerHTML = "변장 전 (핑구 아님 주의)";
     }
   }
@@ -371,6 +371,7 @@
     obj2.innerHTML = `${hours} : ${minutes} : ${seconds}`;
   }, 1000);
 </script>
+
 
 
 
