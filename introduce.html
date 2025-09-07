@@ -1,11 +1,373 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=w, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feathers McGraw - 빌런 포트폴리오</title>
+  <style>
+    @font-face {
+      font-family: '온글잎박다현체';
+      src: url('../media/온글잎박다현체.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    body {
+      margin: 0;
+      /* font-family: "Comic Sans MS"; */
+      font-family: '온글잎박다현체', sans-serif;
+      background-color: #1b1b1b;
+      color: white;
+    }
+
+    /* ============== intro 스타일 ============== */
+    #intro {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .intro-content {
+      text-align: center;
+    }
+    .intro img {
+      max-width: 770px;
+      width: 80%;
+      height: auto;
+      border: 3px solid #444;
+      border-radius: 8px;
+    }
+    .intro-text {
+      font-size: 60px;
+      color: white;
+      margin: 20px 0;
+    }
+    .enter-text {
+      font-size: 30px;
+      color: #f4d35e;
+      cursor: pointer;
+    }
+    .enter-text:hover {
+      color: #ff6347;
+    }
+    
+    /* ============ container ============ */
+    #container {
+      width: 1000px;
+      margin: 20px auto;
+      border: 3px solid #e63946;
+      box-shadow: 0 0 15px black;
+    }
+
+    /* ============ header ============ */
+    #header {
+      width: 100%;
+      height: 120px;
+      color: #f4d35e;
+      background: repeating-linear-gradient(
+        -45deg,
+        #e63946,
+        #e63946 20px,
+        #111 20px,
+        #111 40px
+      );
+      display: flex;
+      font-size: 50px;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 4px 4px 4px black;
+    }
+
+    /* ============ sidebar ============ */
+    #sidebar {
+      width: 25%;
+      height: 700px;
+      float: left;
+      border-right: 2px solid #e63946;
+      box-sizing: border-box;
+      text-align: center;
+      padding: 15px;
+      background: #2a2a2a;
+    }
+    #sidebar img {
+      width: 80%;
+      box-shadow: 1px 1px 2px black;
+      border-radius: 10px;
+    }
+    #sidebar img:hover {
+      transform: scale(1.05);
+    }
+    #img1 {
+      cursor: pointer;
+    }
+    #sidebar .caption {
+      font-size: 20px;
+      margin: 10px 0;
+      color: white;
+      line-height: 25px;
+    }
+    #disguiseText {
+      margin: 10px 0 30px 0;
+      font-size: 25px;
+      font-weight: bold;
+      color: #f4d35e;
+      text-shadow: 1px 1px 2px black;
+    }
+
+    /* ============ 본문 ============ */
+    #contents {
+      width: 75%;
+      height: 700px;
+      float: left;
+      box-sizing: border-box;
+      padding: 30px;
+      background: #222;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column; /* menu 위, page 아래 */
+    }
+
+    .menu {
+      width: 600px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      background: #222;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .menu span {
+      cursor: pointer;
+      width: 120px;
+      height: 40px;
+      line-height: 40px;
+      margin-left: 30px;
+      text-align: center;
+      box-shadow: 1px 1px 2px black;
+      border-radius: 10px;
+    }
+    .menu span:hover {
+      color: #e63946;
+      transform: scale(1.05);
+    }
+
+    .page {
+      display: none;
+      font-size: 23px;
+    }
+    .page h2 {
+      text-align: center;
+      color: #e63946;
+      text-shadow: 2px 2px 4px black;
+    }
+    .page table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    .page th, .page td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #555;
+      text-align: center;
+    }
+    .page td {
+      color: #f4d35e;
+    }
+    .page ul {
+      line-height: 40px;
+      width: 400px;
+      float: left;
+    }
+
+    /* ============ footer ============ */
+    #footer {
+      width: 100%;
+      height: 80px;
+      background: linear-gradient(to right, #2a2a2a, #111);
+      /* background: repeating-linear-gradient(
+        -45deg,
+        #e63946,
+        #e63946 20px,
+        #111 20px,
+        #111 40px
+      ); */
+      clear: both;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 20px;
+      color: #f4d35e;
+      border-top: 2px solid #e63946;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 16px;
+      color: #ddd;
+      line-height: 20px;
+    }
+    .footer-center {
+      text-align: center;
+      margin: 0 auto;
+      font-weight: bold;
+      text-shadow: 
+        0 0 5px #f4d35e,
+        0 0 10px #e63946,
+        0 0 20px #e63946;
+    }
+    .date, .time {
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 30px;
+      margin-left: 50px;
+      color: #ddd;
+    }
+  </style>
 </head>
 <body>
-    자기소개 페이지
+  <div id="intro">
+    <div class="intro-content">
+      <img src="../media/McGraw_mugshot.JPG">
+      <div class="intro-text">He`s BACK...</div>
+      <span class="enter-text" onclick="enterSite()">ENTER</span>
+    </div>
+  </div>
+
+  <div id="container">
+
+    <div id="header">
+      🚨 WANTED: Feathers McGraw 🚨
+    </div>
+
+    <div id="sidebar">
+      <div class="caption">
+        사진 클릭하여<br>하찮은 변장 수준 확인하기
+      </div>
+      <img src="../media/McGraw_noDisguise.jpg" id="img1" onclick="fnChange()">
+      <div id="disguiseText">변장 전 (핑구 아님 주의)</div>
+      <img src="../media/McGraw_wanted.jpg">
+      <div class="caption">
+        변장이라 하는 것도 뻔뻔한데<br>
+        그걸 또 속아서 치킨이라 적고<br>
+        수배하는 경찰이 더 가관인 모습
+      </div>
+    </div>
+
+    <div id="contents">
+      <div class="menu">
+        <span onclick="showPage(1)">빌런 소개</span>
+        <span onclick="showPage(2)">컴백 준비</span>
+        <span onclick="showPage(3)">활약 명장면</span>
+      </div>
+
+      <div class="page" id="page1">
+        <h2>WHO IS WORLD`S BEST BOSS? / 어 나야</h2>
+        <table>
+          <tr><th>이름</th><td>Feathers McGraw (페더스 맥그로우)</td></tr>
+          <tr><th>나이</th><td>불명</td></tr>
+          <tr><th>성별</th><td>수컷</td></tr>
+          <tr><th>종족</th><td>펭귄</td></tr>
+          <tr><th>키</th><td>3피트 / 약 91.5cm</td></tr>
+          <tr><th>몸무게</th><td>12파운드 / 약 5.5kg</td></tr>
+        </table>
+        <ul>
+          <li>윌레스와 그로밋에 등장하는 천재(?) 범죄자</li>
+          <li>그의 무기는 바로 말 없는 침묵과 치밀한(?) 계획</li>
+          <li>단 한마디도 하지 않지만 모든 것을 꿰뚫는(?)</li>
+          <li>공포(?)의 빌런이자 동시에 코믹한(+멍청한) 존재</li>
+        </ul>
+        <img src="../media/McGraw_bestBoss.jpg">
+      </div>
+
+      <div class="page" id="page2">
+        <h2>컴백 준비라고 쓰고 깜빵 생활이라 읽는다</h2>
+        <div>
+          <img src="../media/McGraw_prison1.jpg">
+          <img src="../media/McGraw_prison3.jpg">
+          <img src="../media/McGraw_prison2.jpg">
+          <img src="../media/McGraw_prison4.jpg">
+        </div>
+      </div>
+
+      <div class="page" id="page3">
+        <h2>그 유명한 울트라 초스피드 즉석 기차레일 깔기 추격전</h2>
+        <iframe width="680" height="450"
+          src="https://www.youtube.com/embed/jrmZIgVoQw4"
+          title="YouTube video"
+          frameborder="0"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="footer-left">
+        <div class="date"></div>
+        <div class="time"></div>
+      </div>
+      <div class="footer-center">
+        Copyright ©. Feathers McGraw. All Rights Reserved.
+      </div>
+    </div>
+  </div>
 </body>
 </html>
+
+<script>
+  function enterSite() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("container").style.display = "block";
+    showPage(1); // 처음엔 Page1 보이기
+  }
+
+  function fnChange() {
+    let obj = document.querySelector("#img1");
+    let txt = document.querySelector("#disguiseText");
+    if (obj.src.includes("noDisguise.jpg")) {
+        obj.src = "../media/McGraw_disguise.jpg";
+        txt.innerHTML = "변장 후 (치킨 아님 주의)";
+    } else {
+        obj.src = "../media/McGraw_noDisguise.jpg";
+        txt.innerHTML = "변장 전 (핑구 아님 주의)";
+    }
+  }
+
+  function showPage(num) {
+    let page = document.querySelectorAll(".page"); // 모든 .page 요소 가져오기
+    for (let i = 0; i < page.length; i++) {
+      page[i].style.display = "none";
+    } // 반복해서 모든 page 숨기기
+    document.getElementById("page" + num).style.display = "block"; //선택 num의 page만 보이기
+  }
+
+  function pad(n) {
+    return ("0" + n).slice(-2);
+  }
+  setInterval(() => {
+    let datetime = new Date();
+    let obj1 = document.querySelector(".date");
+    let obj2 = document.querySelector(".time");
+
+    let year = datetime.getFullYear();
+    let month = pad(datetime.getMonth() + 1);
+    let day = pad(datetime.getDate());
+
+    let hours = pad(datetime.getHours());
+    let minutes = pad(datetime.getMinutes());
+    let seconds = pad(datetime.getSeconds());
+  
+    obj1.innerHTML = `${year}.${month}.${day}`;
+    obj2.innerHTML = `${hours} : ${minutes} : ${seconds}`;
+  }, 1000);
+</script>
